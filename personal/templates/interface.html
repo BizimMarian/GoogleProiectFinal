@@ -1,0 +1,98 @@
+{% extends 'base.html'%}
+
+{% block body %}
+
+<div class="btn-group">
+
+<!--    <a href="{% url 'show_Actions'%}">-->
+<!--        <button type="button" class="btn btn-danger">Actiune</button>-->
+<!--    </a>-->
+<!--    <a href="{% url 'show_Horrors'%}">-->
+<!--        <button type="button" class="btn btn-dark">Horror</button>-->
+<!--    </a>-->
+<!--    <a href="{% url 'show_Comedies'%}">-->
+<!--        <button type="button" class="btn btn-success">Comedie</button>-->
+<!--    </a>-->
+<!--    <a href="{% url 'show_Dramas'%}">-->
+<!--        <button type="button" class="btn btn-warning">Drama</button>-->
+<!--    </a>-->
+
+<!--    -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+<!--    <a href="{%url 'New_Actiune'%}" class="btn btn-warning btn-sm" role="button">+</a>-->
+
+<!--    <button type="button" class="btn btn-secondary">Secondary</button>-->
+<!--    <button type="button" class="btn btn-success">Success</button>-->
+<!--    <button type="button" class="btn btn-danger">Danger</button>-->
+<!--    <button type="button" class="btn btn-warning">Warning</button>-->
+<!--    <button type="button" class="btn btn-info">Info</button>-->
+<!--    <button type="button" class="btn btn-light">Light</button>-->
+<!--    <button type="button" class="btn btn-dark">Dark</button>-->
+
+<!--    <button type="button" class="btn btn-link">Link</button>-->
+<!--    <a href="{%url 'New_Actiune'%}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>Edit</button></a>-->
+
+
+</div>
+<h4>{{ header }}</h4>
+<table class="table table-hover">
+    <thead>
+        <tr>
+
+            <th>Lista</th>
+            <th>Nume</th>
+            <th>Recomandari film</th>
+            <th>Nota</th>
+
+            <td>
+
+<!--                <a href="{%url 'New_Actiune'%}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>Adauga  Actiune</button></a>-->
+<!--                <a href="{%url 'New_Horror'%}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>Adauga  Horror</button></a>-->
+
+            </td>
+
+
+
+        </tr>
+
+
+    </thead>
+    <tbody>
+        {%for item in items%}
+        <tr>
+
+
+            <td>{{item.pk}}</td>
+            <td>{{item.Nume}}</td>
+            <td>{{item.Filmul}}</td>
+            <td>{{item.Nota}}</td>
+            {%if header|lower == "actiune"%}
+            <td>
+                <a href="{% url 'Remove_actiune' item.pk %}" class="btn btn-danger btn-sm" role="button">Erase</a>
+            </td>
+            {% elif header|lower == "horror"%}
+            <td>
+                <a href="{% url 'Remove_horror' item.pk %}" class="btn btn-dark btn-sm" role="button">Erase</a>
+            </td>
+            {% elif header|lower == "drame"%}
+            <td>
+                <a href="{% url 'Remove_drame' item.pk %}" class="btn btn-warning btn-sm" role="button">Erase</a>
+            </td>
+            {% elif header|lower == "comedii"%}
+            <td>
+                <a href="{% url 'Remove_comedie' item.pk %}" class="btn btn-success btn-sm" role="button">Erase</a>
+            </td>
+
+            {%endif%}
+
+
+
+
+
+
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}
